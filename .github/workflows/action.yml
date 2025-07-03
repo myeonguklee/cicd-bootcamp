@@ -1,12 +1,12 @@
-name: fitering ci
+name: activity type ci
 
 on:
-  push:
-    paths: ["src/**"]
-    branches: [main, dev]
+  pull_request:
+    types: [opened, synchronize, closed]
+    branches: [main]
 
 jobs:
-  ci:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,3 +20,11 @@ jobs:
 
       - name: Test results
         run: echo "Tests completed for src changes on ${{ github.ref }}"
+  
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup temporary files
+        run: |
+          echo "cleaning up temporary files for closed PR"
+          echo "Cleanup completed"
