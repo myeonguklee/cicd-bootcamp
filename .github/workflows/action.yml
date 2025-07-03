@@ -1,4 +1,4 @@
-name: Basic CI
+name: fitering ci
 
 on:
   push:
